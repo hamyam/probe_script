@@ -1,0 +1,21 @@
+Anzahl Zellen in
+x-Rchtg. (entspricht nk): 8
+y-Rchtg. (entspricht nj): 24
+z-Rchtg. (entspricht ni): 20
+
+Zellen sind über die Länge gleich verteilt.
+
+xmin: -0.5 xmax: 0.436
+ymin: -1.0 ymax: 0.
+zmin: -1.0 zmax: 0.
+
+velu=1.
+# -1?
+
+velv=0.57735
+velw=0.
+pres=0.
+tup1=1.e-5
+tup2=10.
+
+tnue und phi keine Ahnung
