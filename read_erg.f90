@@ -32,16 +32,18 @@
         write(*,*)"Eckenanzahl in Richtungen: ", (nx(m)+1),(ny(m)+1),(nz(m)+1)
         write(*,*)"gesamtanzahl an Ecken: ", (nx(m)+1)*(ny(m)+1)*(nz(m)+1)
 
-        read(66)(((x(k,j,i), y(k,j,i), z(k,j,i), &
-          &     k=1, nz(m)+1) ,&
+        read(66)(((x(i,j,k), y(i,j,k), z(i,j,k), &
+          &     i=1, nx(m)+1) ,&
           &        j=1, ny(m)+1), &
-          &            i=1, nx(m)+1 )
+          &            k=1, nz(m)+1 )
           ! Verschachtelte Read Anweisung. 
-          ! aeussere  Iteration i ueber nx
+          ! innere    Iteration k ueber nz      
           ! mittlere  Iteration j ueber ny
-          ! innere    Iteration j ueber nz      
-          ! Reihenfolge der Eintraege auch wieder 
-        write(*,*)"x(1,1,i)",(x(1,1,i),i=1,nx(m))
+          ! aeussere  Iteration i ueber nx
+          ! Reihenfolge ????
+
+        write(*,*)"x(i,1,1)",(x(i,1,1),i=1,nx(m)+1)
+        write(*,*)"x(1,j,1)",(x(1,j,1),j=1,ny(m)+1)
 
         ! Debugg 
      !    write(*,996)(((x(k,j,i),y(k,j,i),               &
@@ -64,14 +66,14 @@
       open(55,file='netz5.dat',form='formatted',status='unknown') 
 
       do 100 m=1,mblocks
-        do 101 i=1,nx(m)+1
-          !   Auessere Iteration i   -> nx = 8  ????
+        do 101 k=1,nz(m)+1
+          !   Auessere Iteration k   -> nz = 20
           do 102 j=1,ny(m)+1
-            ! Mittlere Iteration j   -> ny = 24 ????
-            do 103 k=1,nz(m)+1
-              ! Innere Iteration k   -> nz = 20 ????
+            ! Mittlere Iteration j   -> ny = 24 
+            do 103 i=1,nx(m)+1
+              ! Innere Iteration i   -> nx = 8
 
-              write(55,996)x(k,j,i),y(k,j,i),z(k,j,i)
+              write(55,996)x(i,j,k),y(i,j,k),z(i,j,k)
               ! Schreibe Koordinaten x, y, z getrennt durch je zwei Leerzeilen
 
   103       continue
@@ -79,7 +81,7 @@
   101   continue
   100 continue
       
-    996     format(3(1pe13.6,2x))
+    996     format(3(1pe13.6,1x))
       close(55) 
 
 !******* ENDE Schreiben Netz File in ASCI ****************************
